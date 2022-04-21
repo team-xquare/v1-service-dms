@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "point_status")
 @Entity
 public class PointStatusJpaEntity {
 
@@ -21,7 +22,7 @@ public class PointStatusJpaEntity {
 
     private Integer penaltyLevel;
 
-    private Boolean penaltyTrainingStatus;
+    private Boolean penaltyStatus;
 
     @MapsId("id")
     @OneToOne
