@@ -10,5 +10,5 @@ import java.util.List;
 @Getter
 public class StudentListResponse {
 
-    private final List<Student> studentList;
+    private final List<Student> students;
 }
