@@ -1,13 +1,13 @@
-package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms;
+package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper;
 
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.PointStatusJpaEntity;
 import app.xquare.dms.domain.student.domain.Student;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StudentPointMapper {
+public class StudentMapper {
 
-    Student mapToStudent(PointStatusJpaEntity pointStatus) {
+    public Student mapToStudent(PointStatusJpaEntity pointStatus) {
         return Student.builder()
                 .id(pointStatus.getId())
                 .name(pointStatus.getStudent().getName())
