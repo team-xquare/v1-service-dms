@@ -49,4 +49,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
+            ghcr.io/team-xquare/v1-service-dms:latest
             ghcr.io/team-xquare/v1-service-dms:${{ env.BRANCH_NAME }}
