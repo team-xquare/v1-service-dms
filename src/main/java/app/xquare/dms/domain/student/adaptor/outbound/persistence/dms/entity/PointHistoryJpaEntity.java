@@ -16,7 +16,7 @@ public class PointHistoryJpaEntity {
     @Id
     private String id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", nullable = false)
     private StudentJpaEntity student;
 
