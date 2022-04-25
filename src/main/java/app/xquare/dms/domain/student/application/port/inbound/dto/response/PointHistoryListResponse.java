@@ -1,4 +1,4 @@
-package app.xquare.dms.domain.student.application.port.inbound.dto;
+package app.xquare.dms.domain.student.application.port.inbound.dto.response;
 
 import app.xquare.dms.domain.student.domain.PointHistory;
 import lombok.Builder;

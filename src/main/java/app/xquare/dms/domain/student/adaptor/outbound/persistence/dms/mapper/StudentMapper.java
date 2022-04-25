@@ -17,7 +17,17 @@ public class StudentMapper {
                 .goodPoint(pointStatus.getGoodPoint())
                 .badPoint(pointStatus.getBadPoint())
                 .penaltyLevel(pointStatus.getPenaltyLevel())
-                .penaltyTrainingStatus(pointStatus.getPenaltyStatus())
+                .isPenaltyRequired(pointStatus.getPenaltyStatus())
+                .build();
+    }
+
+    public PointStatusJpaEntity mapToPointStatusJpaEntity(Student student) {
+        return PointStatusJpaEntity.builder()
+                .id(student.getId())
+                .goodPoint(student.getGoodPoint())
+                .badPoint(student.getBadPoint())
+                .penaltyLevel(student.getPenaltyLevel())
+                .penaltyStatus(student.getIsPenaltyRequired())
                 .build();
     }
 

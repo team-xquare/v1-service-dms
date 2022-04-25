@@ -1,7 +1,7 @@
 package app.xquare.dms.domain.student.adaptor.inbound.web;
 
 import app.xquare.dms.domain.student.application.port.inbound.GetPointListUseCase;
-import app.xquare.dms.domain.student.application.port.inbound.dto.PointListResponse;
+import app.xquare.dms.domain.student.application.port.inbound.dto.response.PointListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
