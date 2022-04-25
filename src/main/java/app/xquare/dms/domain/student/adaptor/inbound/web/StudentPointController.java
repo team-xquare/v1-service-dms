@@ -7,6 +7,7 @@ import app.xquare.dms.domain.student.application.port.inbound.dto.PointHistoryLi
 import app.xquare.dms.domain.student.application.port.inbound.dto.PointRequest;
 import app.xquare.dms.domain.student.application.port.inbound.dto.StudentListResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,6 +32,7 @@ public class StudentPointController {
     }
 
     @PostMapping("/{student-id}")
+    @ResponseStatus(value = HttpStatus.CREATED)
     public void givePoint(@PathVariable("student-id") String studentId, @Valid @RequestBody PointRequest request) {
         givePointUseCase.givePoint(studentId, request);
     }
