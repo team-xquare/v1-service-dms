@@ -13,9 +13,14 @@ public class Point {
 
     private final Boolean type;
 
-    private final Integer point;
+    private Integer point;
 
     public boolean isGoodPoint() {
         return type;
+    }
+
+    public Point negative() {
+        point *= -1;
+        return this;
     }
 }

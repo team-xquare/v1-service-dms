@@ -1,5 +1,6 @@
 package app.xquare.dms.domain.student.application.service;
 
+import app.xquare.dms.domain.student.application.port.inbound.DeletePointHistoryUseCase;
 import app.xquare.dms.domain.student.application.port.inbound.GetPointHistoryListUseCase;
 import app.xquare.dms.domain.student.application.port.inbound.GetStudentListUseCase;
 import app.xquare.dms.domain.student.application.port.inbound.GivePointUseCase;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase {
+public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase {
 
     private final FindStudentPort findStudentPort;
     private final FindPointHistoryPort findPointHistoryPort;
@@ -27,6 +28,8 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
 
     private final SavePointHistoryPort savePointHistoryPort;
     private final SaveStudentPort saveStudentPort;
+
+    private final DeletePointHistoryPort deletePointHistoryPort;
 
     @Override
     public StudentListResponse getStudentList() {
@@ -58,5 +61,16 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
 
         saveStudentPort.saveStudent(student);
         savePointHistoryPort.savePointHistory(student, point);
+    }
+
+    @Override
+    public void deletePointHistory(String studentId, String historyId) {
+        Student student = findStudentByIdPort.findStudentById(studentId);
+
+        Point point = deletePointHistoryPort.deletePointHistory(historyId);
+
+        student.addPoint(point.negative());
+
+        saveStudentPort.saveStudent(student);
     }
 }

@@ -1,5 +1,6 @@
 package app.xquare.dms.domain.student.adaptor.inbound.web;
 
+import app.xquare.dms.domain.student.application.port.inbound.DeletePointHistoryUseCase;
 import app.xquare.dms.domain.student.application.port.inbound.GetPointHistoryListUseCase;
 import app.xquare.dms.domain.student.application.port.inbound.GetStudentListUseCase;
 import app.xquare.dms.domain.student.application.port.inbound.GivePointUseCase;
@@ -20,6 +21,7 @@ public class StudentPointController {
     private final GetStudentListUseCase getStudentListUseCase;
     private final GetPointHistoryListUseCase getPointHistoryListUseCase;
     private final GivePointUseCase givePointUseCase;
+    private final DeletePointHistoryUseCase deletePointHistoryUseCase;
 
     @GetMapping
     public StudentListResponse studentList() {
@@ -35,5 +37,11 @@ public class StudentPointController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public void givePoint(@PathVariable("student-id") String studentId, @Valid @RequestBody PointRequest request) {
         givePointUseCase.givePoint(studentId, request);
+    }
+
+    @DeleteMapping("/{student-id}/history/{history-id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deletePointHistory(@PathVariable("history-id") String historyId, @PathVariable("student-id") String studentId) {
+        deletePointHistoryUseCase.deletePointHistory(studentId, historyId);
     }
 }
