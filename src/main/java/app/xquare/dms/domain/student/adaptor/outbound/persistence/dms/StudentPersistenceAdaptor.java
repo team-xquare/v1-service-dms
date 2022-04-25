@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHistoryPort, FindStudentByIdPort, SavePointHistoryPort, SaveStudentPort {
+public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHistoryPort, FindStudentByIdPort, SavePointHistoryPort, SaveStudentPort, DeletePointHistoryPort {
 
     private final StudentMapper studentMapper;
     private final PointMapper pointMapper;
@@ -73,5 +73,10 @@ public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHist
     @Override
     public void saveStudent(Student student) {
         pointStatusRepository.save(studentMapper.mapToPointStatusJpaEntity(student));
+    }
+
+    @Override
+    public Point deletePointHistory(String historyId) {
+        return null;
     }
 }
