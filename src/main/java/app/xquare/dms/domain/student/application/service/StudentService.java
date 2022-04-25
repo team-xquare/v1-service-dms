@@ -29,6 +29,8 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
     private final SavePointHistoryPort savePointHistoryPort;
     private final SaveStudentPort saveStudentPort;
 
+    private final DeletePointHistoryPort deletePointHistoryPort;
+
     @Override
     public StudentListResponse getStudentList() {
         List<Student> students = findStudentPort.findStudent();
@@ -63,6 +65,12 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
 
     @Override
     public void deletePointHistory(String studentId, String historyId) {
+        Student student = findStudentByIdPort.findStudentById(studentId);
 
+        Point point = deletePointHistoryPort.deletePointHistory(historyId);
+
+        student.addPoint(point.negative());
+
+        saveStudentPort.saveStudent(student);
     }
 }

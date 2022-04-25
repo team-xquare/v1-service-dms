@@ -1,6 +1,7 @@
 package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms;
 
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.PointHistoryJpaEntity;
+import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.StudentJpaEntity;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper.PointMapper;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper.StudentMapper;
@@ -12,6 +13,7 @@ import app.xquare.dms.domain.student.application.port.outbound.*;
 import app.xquare.dms.domain.student.domain.Point;
 import app.xquare.dms.domain.student.domain.PointHistory;
 import app.xquare.dms.domain.student.domain.Student;
+import app.xquare.dms.domain.student.exception.PointHistoryNotFoundException;
 import app.xquare.dms.domain.student.exception.StudentNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -77,6 +79,12 @@ public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHist
 
     @Override
     public Point deletePointHistory(String historyId) {
-        return null;
+        PointHistoryJpaEntity pointHistory = pointHistoryRepository.findById(historyId)
+                .orElseThrow(() -> PointHistoryNotFoundException.EXCEPTION);
+
+        PointJpaEntity point = pointHistory.getPoint();
+        pointHistoryRepository.delete(pointHistory);
+
+        return pointMapper.mapToPoint(point);
     }
 }

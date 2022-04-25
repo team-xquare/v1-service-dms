@@ -7,7 +7,7 @@ public class PointNotFoundException extends GlobalException  {
 
     public static final GlobalException EXCEPTION = new PointNotFoundException();
 
-    public PointNotFoundException() {
+    private PointNotFoundException() {
         super(ExceptionCode.POINT_NOR_FOUND);
     }
 }
