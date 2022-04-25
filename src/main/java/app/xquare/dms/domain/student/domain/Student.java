@@ -19,5 +19,5 @@ public class Student {
 
     private final Integer penaltyLevel;
 
-    private final Boolean penaltyTrainingStatus;
+    private final Boolean isPenaltyDone;
 }
