@@ -14,7 +14,4 @@ public interface PointHistoryRepository extends CrudRepository<PointHistoryJpaEn
 
     @Query("select p from PointHistoryJpaEntity p join fetch p.point where p.student = :student order by p.pointDate desc")
     List<PointHistoryJpaEntity> findByStudent(@Param("student") StudentJpaEntity student);
-
-    @Query("select max(p.id) from PointHistoryJpaEntity p")
-    Integer findMaxId();
 }
