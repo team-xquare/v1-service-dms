@@ -7,7 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ExceptionCode {
 
-    STUDENT_NOT_FOUND(400, "Student Not Found");
+    POINT_NOR_FOUND(404, "Point Not Found"),
+    STUDENT_NOT_FOUND(404, "Student Not Found");
 
     private final int status;
     private final String message;
