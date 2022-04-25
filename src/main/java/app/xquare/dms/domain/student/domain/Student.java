@@ -13,11 +13,39 @@ public class Student {
 
     private final String num;
 
-    private final Integer goodPoint;
+    private Integer goodPoint;
 
-    private final Integer badPoint;
+    private Integer badPoint;
 
-    private final Integer penaltyLevel;
+    private Integer penaltyLevel;
 
-    private final Boolean isPenaltyRequired;
+    private Boolean isPenaltyRequired;
+
+    public void addPoint(Point point) {
+        if(point.isGoodPoint()) setGoodPoint(point.getPoint());
+        else setBadPoint(point.getPoint());
+    }
+
+    public void completeTraining() {
+        setGoodPoint(-5);
+        setBadPoint(-5);
+        isPenaltyRequired = false;
+    }
+
+    private void setGoodPoint(Integer point) {
+        goodPoint += point;
+    }
+
+    private void setBadPoint(Integer point) {
+        badPoint += point;
+
+        if(!isPenaltyRequired && isOverBound(penaltyLevel+1, badPoint)) {
+            penaltyLevel++;
+            isPenaltyRequired = true;
+        }
+    }
+
+    private boolean isOverBound(Integer level, Integer point) {
+        return point >= PenaltyLevel.BOUNDS[level];
+    }
 }

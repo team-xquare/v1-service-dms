@@ -14,4 +14,8 @@ public class Point {
     private final Boolean type;
 
     private final Integer point;
+
+    public boolean isGoodPoint() {
+        return type;
+    }
 }
