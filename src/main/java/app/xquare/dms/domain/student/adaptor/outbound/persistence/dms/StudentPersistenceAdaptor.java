@@ -62,7 +62,9 @@ public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHist
         StudentJpaEntity studentJpaEntity = studentRepository.findById(student.getId())
                 .orElseThrow(() -> StudentNotFoundException.EXCEPTION);
 
+        String id = String.valueOf(pointHistoryRepository.findMaxId() + 1);
         pointHistoryRepository.save(PointHistoryJpaEntity.builder()
+                .id(id)
                 .pointDate(LocalDate.now())
                 .point(pointRepository.save(pointMapper.mapToPointJpaEntity(point)))
                 .student(studentJpaEntity)

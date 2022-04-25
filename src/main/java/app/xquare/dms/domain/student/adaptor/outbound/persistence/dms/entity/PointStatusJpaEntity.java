@@ -25,7 +25,7 @@ public class PointStatusJpaEntity {
     private Boolean penaltyStatus;
 
     @MapsId("id")
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", nullable = false)
     private StudentJpaEntity student;
 }

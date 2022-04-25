@@ -2,10 +2,7 @@ package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Builder
@@ -22,6 +19,6 @@ public class StudentJpaEntity {
 
     private String number;
 
-    @OneToOne(mappedBy = "student", optional = false)
+    @OneToOne(mappedBy = "student", optional = false, fetch = FetchType.LAZY)
     private PointStatusJpaEntity pointStatus;
 }
