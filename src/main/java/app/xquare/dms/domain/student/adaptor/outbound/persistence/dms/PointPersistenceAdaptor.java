@@ -2,6 +2,7 @@ package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms;
 
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper.PointMapper;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.PointRepository;
+import app.xquare.dms.domain.student.application.port.outbound.FindCompleteTrainingPointPort;
 import app.xquare.dms.domain.student.application.port.outbound.FindPointByIdPort;
 import app.xquare.dms.domain.student.application.port.outbound.FindPointPort;
 import app.xquare.dms.domain.student.domain.Point;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort {
+public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort, FindCompleteTrainingPointPort {
 
     private final PointMapper pointMapper;
 
@@ -34,5 +35,10 @@ public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort
                 pointRepository.findById(pointId)
                         .orElseThrow(() -> PointNotFoundException.EXCEPTION)
         );
+    }
+
+    @Override
+    public List<Point> findCompleteTrainingPoint(Integer penaltyLevel) {
+        return null;
     }
 }

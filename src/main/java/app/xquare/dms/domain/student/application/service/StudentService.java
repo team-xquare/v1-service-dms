@@ -1,9 +1,6 @@
 package app.xquare.dms.domain.student.application.service;
 
-import app.xquare.dms.domain.student.application.port.inbound.DeletePointHistoryUseCase;
-import app.xquare.dms.domain.student.application.port.inbound.GetPointHistoryListUseCase;
-import app.xquare.dms.domain.student.application.port.inbound.GetStudentListUseCase;
-import app.xquare.dms.domain.student.application.port.inbound.GivePointUseCase;
+import app.xquare.dms.domain.student.application.port.inbound.*;
 import app.xquare.dms.domain.student.application.port.inbound.dto.response.PointHistoryListResponse;
 import app.xquare.dms.domain.student.application.port.inbound.dto.request.PointRequest;
 import app.xquare.dms.domain.student.application.port.inbound.dto.response.StudentListResponse;
@@ -19,7 +16,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase {
+public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase, CompleteTrainingUseCase {
 
     private final FindStudentPort findStudentPort;
     private final FindPointHistoryPort findPointHistoryPort;
@@ -72,5 +69,10 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         student.addPoint(point.negative());
 
         saveStudentPort.saveStudent(student);
+    }
+
+    @Override
+    public void completeTraining(String studentId, Integer penaltyLevel) {
+
     }
 }
