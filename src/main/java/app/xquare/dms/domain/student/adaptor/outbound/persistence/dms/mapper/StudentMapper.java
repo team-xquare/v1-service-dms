@@ -17,7 +17,7 @@ public class StudentMapper {
                 .goodPoint(pointStatus.getGoodPoint())
                 .badPoint(pointStatus.getBadPoint())
                 .penaltyLevel(pointStatus.getPenaltyLevel())
-                .isPenaltyDone(pointStatus.getPenaltyStatus())
+                .isPenaltyRequired(pointStatus.getPenaltyStatus())
                 .build();
     }
 
