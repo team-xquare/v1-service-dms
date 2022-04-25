@@ -75,6 +75,20 @@ public class StudentTest {
         assertThat(student.getPenaltyLevel()).isEqualTo(1);
     }
 
+
+    @Test
+    void 연속봉사() {
+        int point1 = PenaltyLevel.BOUNDS[1];
+        int point2 = PenaltyLevel.BOUNDS[2] - PenaltyLevel.BOUNDS[1] + 5;
+
+        student.addPoint(badPoint(point1));
+        student.addPoint(badPoint(point2));
+
+        student.completeTraining();
+
+        assertThat(student.getPenaltyLevel()).isEqualTo(2);
+    }
+
     private Point goodPoint(Integer pointValue) {
         return Point.builder()
                 .type(true)

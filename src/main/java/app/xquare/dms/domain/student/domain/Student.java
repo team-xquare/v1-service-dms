@@ -27,9 +27,9 @@ public class Student {
     }
 
     public void completeTraining() {
+        isPenaltyRequired = false;
         setGoodPoint(-5);
         setBadPoint(-5);
-        isPenaltyRequired = false;
     }
 
     private void setGoodPoint(Integer point) {
