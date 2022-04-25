@@ -21,6 +21,16 @@ public class StudentMapper {
                 .build();
     }
 
+    public PointStatusJpaEntity mapToPointStatusJpaEntity(Student student) {
+        return PointStatusJpaEntity.builder()
+                .id(student.getId())
+                .goodPoint(student.getGoodPoint())
+                .badPoint(student.getBadPoint())
+                .penaltyLevel(student.getPenaltyLevel())
+                .penaltyStatus(student.getIsPenaltyRequired())
+                .build();
+    }
+
     public PointHistory mapToPointHistory(PointHistoryJpaEntity pointHistory) {
         return PointHistory.builder()
                 .id(pointHistory.getId())

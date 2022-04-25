@@ -15,4 +15,13 @@ public class PointMapper {
                 .point(point.getPoint())
                 .build();
     }
+
+    public PointJpaEntity mapToPointJpaEntity(Point point) {
+        return PointJpaEntity.builder()
+                .id(point.getId())
+                .reason(point.getReason())
+                .type(point.getType())
+                .point(point.getPoint())
+                .build();
+    }
 }
