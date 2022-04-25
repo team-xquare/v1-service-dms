@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "cdf933d8-6590-4ba7-a14b-ee5c4db7e15e",
+		"name": "XQUARE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "dms",
+			"item": [
+				{
+					"name": "/points/student - 학생 목록",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DMS_BASE_URL}}/points/student",
+							"host": [
+								"{{DMS_BASE_URL}}"
+							],
+							"path": [
+								"points",
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/points/rule - 상벌점 목록",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DMS_BASE_URL}}/points/rule",
+							"host": [
+								"{{DMS_BASE_URL}}"
+							],
+							"path": [
+								"points",
+								"rule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/points/student/{student-id}/history - 학생 상벌점 내역",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DMS_BASE_URL}}/points/student/jiwoourty/history",
+							"host": [
+								"{{DMS_BASE_URL}}"
+							],
+							"path": [
+								"points",
+								"student",
+								"jiwoourty",
+								"history"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/points/student/{student-id}/history",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{DMS_BASE_URL}}/points/student/jiwoourty/history",
+									"host": [
+										"{{DMS_BASE_URL}}"
+									],
+									"path": [
+										"points",
+										"student",
+										"jiwoourty",
+										"history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 Apr 2022 12:28:42 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"point_histories\": [\n        {\n            \"id\": \"11509\",\n            \"date\": \"2022-04-20\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"11465\",\n            \"date\": \"2022-04-19\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"11438\",\n            \"date\": \"2022-04-18\",\n            \"reason\": \"사용제한시간 휴대폰 미반납\",\n            \"point_type\": false,\n            \"point\": 3\n        },\n        {\n            \"id\": \"11420\",\n            \"date\": \"2022-04-17\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"11379\",\n            \"date\": \"2022-04-17\",\n            \"reason\": \"외출외박 후 귀사 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"11153\",\n            \"date\": \"2022-04-14\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"11144\",\n            \"date\": \"2022-04-14\",\n            \"reason\": \"아침점호 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"11123\",\n            \"date\": \"2022-04-13\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"11074\",\n            \"date\": \"2022-04-11\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10973\",\n            \"date\": \"2022-04-06\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10796\",\n            \"date\": \"2022-04-05\",\n            \"reason\": \"호실 정리정돈 우수\",\n            \"point_type\": true,\n            \"point\": 2\n        },\n        {\n            \"id\": \"10949\",\n            \"date\": \"2022-04-05\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10556\",\n            \"date\": \"2022-04-04\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10541\",\n            \"date\": \"2022-04-03\",\n            \"reason\": \"아침점호 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10537\",\n            \"date\": \"2022-04-03\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10502\",\n            \"date\": \"2022-03-30\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10479\",\n            \"date\": \"2022-03-29\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10195\",\n            \"date\": \"2022-03-15\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10178\",\n            \"date\": \"2022-03-14\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10137\",\n            \"date\": \"2022-03-10\",\n            \"reason\": \"등교 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10094\",\n            \"date\": \"2022-03-07\",\n            \"reason\": \"공용시설 사용규정 위반\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10070\",\n            \"date\": \"2022-03-06\",\n            \"reason\": \"외출외박 후 귀사 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        },\n        {\n            \"id\": \"10052\",\n            \"date\": \"2022-03-03\",\n            \"reason\": \"아침점호 지각\",\n            \"point_type\": false,\n            \"point\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "/points/student/{student-id} - 상벌점 부여",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"point_id\": \"266\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DMS_BASE_URL}}/points/student/jiwoourty",
+							"host": [
+								"{{DMS_BASE_URL}}"
+							],
+							"path": [
+								"points",
+								"student",
+								"jiwoourty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "DMS_BASE_URL",
+			"value": "http://54.180.165.105:8080/v1"
+		},
+		{
+			"value": "",
+			"disabled": true
+		}
+	]
+}
