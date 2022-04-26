@@ -58,7 +58,7 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         student.addPoint(point);
 
         saveStudentPort.saveStudent(student);
-        savePointHistoryPort.savePointHistory(student, point);
+        savePointHistoryPort.savePointHistory(student, List.of(point));
     }
 
     @Transactional
@@ -82,8 +82,9 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
 
         for (Point point : points) {
             student.addPoint(point);
-            savePointHistoryPort.savePointHistory(student, point);
         }
+
+        savePointHistoryPort.savePointHistory(student, points);
 
         saveStudentPort.saveStudent(student);
     }
