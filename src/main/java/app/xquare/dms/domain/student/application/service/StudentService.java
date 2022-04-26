@@ -22,6 +22,7 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
     private final FindPointHistoryPort findPointHistoryPort;
     private final FindPointByIdPort findPointByIdPort;
     private final FindStudentByIdPort findStudentByIdPort;
+    private final FindCompleteTrainingPointPort findCompleteTrainingPointPort;
 
     private final SavePointHistoryPort savePointHistoryPort;
     private final SaveStudentPort saveStudentPort;
@@ -60,6 +61,7 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         savePointHistoryPort.savePointHistory(student, point);
     }
 
+    @Transactional
     @Override
     public void deletePointHistory(String studentId, String historyId) {
         Student student = findStudentByIdPort.findStudentById(studentId);
@@ -71,8 +73,18 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         saveStudentPort.saveStudent(student);
     }
 
+    @Transactional
     @Override
     public void completeTraining(String studentId, Integer penaltyLevel) {
+        Student student = findStudentByIdPort.findStudentById(studentId);
 
+        List<Point> points = findCompleteTrainingPointPort.findCompleteTrainingPoint(penaltyLevel);
+
+        for (Point point : points) {
+            student.addPoint(point);
+            savePointHistoryPort.savePointHistory(student, point);
+        }
+
+        saveStudentPort.saveStudent(student);
     }
 }
