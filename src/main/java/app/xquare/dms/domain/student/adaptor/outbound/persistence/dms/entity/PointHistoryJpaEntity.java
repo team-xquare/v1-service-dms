@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class PointHistoryJpaEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,9 +1,6 @@
 package app.xquare.dms.domain.student.application.service;
 
-import app.xquare.dms.domain.student.application.port.inbound.DeletePointHistoryUseCase;
-import app.xquare.dms.domain.student.application.port.inbound.GetPointHistoryListUseCase;
-import app.xquare.dms.domain.student.application.port.inbound.GetStudentListUseCase;
-import app.xquare.dms.domain.student.application.port.inbound.GivePointUseCase;
+import app.xquare.dms.domain.student.application.port.inbound.*;
 import app.xquare.dms.domain.student.application.port.inbound.dto.response.PointHistoryListResponse;
 import app.xquare.dms.domain.student.application.port.inbound.dto.request.PointRequest;
 import app.xquare.dms.domain.student.application.port.inbound.dto.response.StudentListResponse;
@@ -19,12 +16,13 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase {
+public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase, CompleteTrainingUseCase {
 
     private final FindStudentPort findStudentPort;
     private final FindPointHistoryPort findPointHistoryPort;
     private final FindPointByIdPort findPointByIdPort;
     private final FindStudentByIdPort findStudentByIdPort;
+    private final FindCompleteTrainingPointPort findCompleteTrainingPointPort;
 
     private final SavePointHistoryPort savePointHistoryPort;
     private final SaveStudentPort saveStudentPort;
@@ -60,9 +58,10 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         student.addPoint(point);
 
         saveStudentPort.saveStudent(student);
-        savePointHistoryPort.savePointHistory(student, point);
+        savePointHistoryPort.savePointHistory(student, List.of(point));
     }
 
+    @Transactional
     @Override
     public void deletePointHistory(String studentId, String historyId) {
         Student student = findStudentByIdPort.findStudentById(studentId);
@@ -70,6 +69,22 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         Point point = deletePointHistoryPort.deletePointHistory(historyId);
 
         student.addPoint(point.negative());
+
+        saveStudentPort.saveStudent(student);
+    }
+
+    @Transactional
+    @Override
+    public void completeTraining(String studentId, Integer penaltyLevel) {
+        Student student = findStudentByIdPort.findStudentById(studentId);
+
+        List<Point> points = findCompleteTrainingPointPort.findCompleteTrainingPoint(penaltyLevel);
+
+        for (Point point : points) {
+            student.addPoint(point);
+        }
+
+        savePointHistoryPort.savePointHistory(student, points);
 
         saveStudentPort.saveStudent(student);
     }

@@ -55,9 +55,9 @@ public class StudentTest {
     @Test
     void 벌점부여_봉사완료() {
         int pointValue = PenaltyLevel.BOUNDS[1];
-        Point point = badPoint(pointValue);
+        student.addPoint(badPoint(pointValue));
+        student.addPoint(goodPoint(pointValue));
 
-        student.addPoint(point);
         student.completeTraining();
 
         assertThat(student.getBadPoint()).isEqualTo(pointValue - 5);
@@ -81,6 +81,7 @@ public class StudentTest {
         int point1 = PenaltyLevel.BOUNDS[1];
         int point2 = PenaltyLevel.BOUNDS[2] - PenaltyLevel.BOUNDS[1] + 5;
 
+        student.addPoint(goodPoint(point1));
         student.addPoint(badPoint(point1));
         student.addPoint(badPoint(point2));
 

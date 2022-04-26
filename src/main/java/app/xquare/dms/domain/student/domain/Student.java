@@ -1,5 +1,6 @@
 package app.xquare.dms.domain.student.domain;
 
+import app.xquare.dms.domain.student.exception.InvalidPointException;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -34,6 +35,10 @@ public class Student {
 
     private void setGoodPoint(Integer point) {
         goodPoint += point;
+        if(goodPoint < 0) {
+            goodPoint -= point;
+            throw InvalidPointException.EXCEPTION;
+        }
     }
 
     private void setBadPoint(Integer point) {
