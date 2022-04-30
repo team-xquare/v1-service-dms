@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHistoryPort, FindStudentByIdPort, SavePointHistoryPort, SaveStudentPort, DeletePointHistoryPort {
+public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHistoryByStudentPort, FindStudentByIdPort, SavePointHistoryPort, SaveStudentPort, DeletePointHistoryPort {
 
     private final StudentMapper studentMapper;
     private final PointMapper pointMapper;
@@ -42,7 +42,7 @@ public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHist
     }
 
     @Override
-    public List<PointHistory> findPointHistory(String studentId) {
+    public List<PointHistory> findPointHistoryByStudent(String studentId) {
         StudentJpaEntity student = studentRepository.findById(studentId)
                 .orElseThrow(() -> StudentNotFoundException.EXCEPTION);
 

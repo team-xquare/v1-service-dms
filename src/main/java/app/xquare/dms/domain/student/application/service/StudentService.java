@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase, CompleteTrainingUseCase {
+public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase, CompleteTrainingUseCase, GetPointBreakDownUseCase {
 
     private final FindStudentPort findStudentPort;
-    private final FindPointHistoryPort findPointHistoryPort;
+    private final FindPointHistoryByStudentPort findPointHistoryByStudentPort;
     private final FindPointByIdPort findPointByIdPort;
     private final FindStudentByIdPort findStudentByIdPort;
     private final FindCompleteTrainingPointPort findCompleteTrainingPointPort;
@@ -41,7 +41,7 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
 
     @Override
     public PointHistoryListResponse getPointHistoryList(String studentId) {
-        List<PointHistory> pointHistories = findPointHistoryPort.findPointHistory(studentId);
+        List<PointHistory> pointHistories = findPointHistoryByStudentPort.findPointHistoryByStudent(studentId);
 
         return PointHistoryListResponse.builder()
                 .pointHistories(pointHistories.stream().map(p -> PointHistoryListResponse.PointHistory.builder()
@@ -95,5 +95,10 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         savePointHistoryPort.savePointHistory(student, points);
 
         saveStudentPort.saveStudent(student);
+    }
+
+    @Override
+    public List<PointHistory> getPointBreakDown(Integer grade) {
+        return null;
     }
 }

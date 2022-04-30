@@ -4,7 +4,7 @@ import app.xquare.dms.domain.student.domain.PointHistory;
 
 import java.util.List;
 
-public interface FindPointHistoryPort {
+public interface FindPointHistoryByStudentPort {
 
-    List<PointHistory> findPointHistory(String studentId);
+    List<PointHistory> findPointHistoryByStudent(String studentId);
 }
