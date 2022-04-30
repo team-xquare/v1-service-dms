@@ -34,6 +34,8 @@ public class StudentMapper {
     public PointHistory mapToPointHistory(PointHistoryJpaEntity pointHistory) {
         return PointHistory.builder()
                 .id(pointHistory.getId())
+                .name(pointHistory.getStudent().getName())
+                .num(pointHistory.getStudent().getNumber())
                 .date(pointHistory.getPointDate())
                 .reason(pointHistory.getPoint().getReason())
                 .point(pointHistory.getPoint().getPoint())

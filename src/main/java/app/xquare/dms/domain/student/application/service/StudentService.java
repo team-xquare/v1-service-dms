@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -43,7 +44,14 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         List<PointHistory> pointHistories = findPointHistoryPort.findPointHistory(studentId);
 
         return PointHistoryListResponse.builder()
-                .pointHistories(pointHistories)
+                .pointHistories(pointHistories.stream().map(p -> PointHistoryListResponse.PointHistory.builder()
+                        .id(p.getId())
+                        .date(p.getDate())
+                        .reason(p.getReason())
+                        .pointType(p.getPointType())
+                        .point(p.getPoint())
+                        .build())
+                        .collect(Collectors.toList()))
                 .build();
     }
 
