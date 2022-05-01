@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ExceptionCode {
 
+    INVALID_STAY_STATUS(400, "Invalid Stay Status"),
+
     POINT_NOR_FOUND(404, "Point Not Found"),
     POINT_HISTORY_NOT_FOUND(404, "Point History Not Found"),
     INVALID_POINT(400, "Invalid Point"),
