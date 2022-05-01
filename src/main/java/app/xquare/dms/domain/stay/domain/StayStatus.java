@@ -4,6 +4,8 @@ import app.xquare.dms.domain.stay.exception.InvalidStayStatusException;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 @Builder
 @Getter
 public class StayStatus {
@@ -17,11 +19,27 @@ public class StayStatus {
     private String stay;
 
     public void setStay(String stay) {
-        if(stay.equals("금요귀가") || stay.equals("토요귀가") || stay.equals("토요귀사") || stay.equals("잔류")) {
+        if(List.of(StayOption.VALUES).contains(stay)) {
             this.stay = stay;
         }
         else {
             throw InvalidStayStatusException.EXCEPTION;
         }
+    }
+
+    public void setStay(Integer stay) {
+        if(stay < 1 || stay > 4) {
+            throw InvalidStayStatusException.EXCEPTION;
+        }
+        else {
+            this.stay = StayOption.VALUES[stay - 1];
+        }
+    }
+
+    public static String getStayValue(Integer index) {
+        if(index < 1 || index > 4) {
+            throw InvalidStayStatusException.EXCEPTION;
+        }
+        return StayOption.VALUES[index - 1];
     }
 }
