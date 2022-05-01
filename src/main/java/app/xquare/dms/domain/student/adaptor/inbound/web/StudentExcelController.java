@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/excel/point")
-public class ExcelController {
+public class StudentExcelController {
 
     private final StudentPointExcel studentPointExcel;
 
