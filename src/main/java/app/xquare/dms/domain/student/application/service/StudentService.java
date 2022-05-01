@@ -24,6 +24,7 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
     private final FindPointByIdPort findPointByIdPort;
     private final FindStudentByIdPort findStudentByIdPort;
     private final FindCompleteTrainingPointPort findCompleteTrainingPointPort;
+    private final FindPointHistoryByGradePort findPointHistoryByGradePort;
 
     private final SavePointHistoryPort savePointHistoryPort;
     private final SaveStudentPort saveStudentPort;
@@ -99,6 +100,6 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
 
     @Override
     public List<PointHistory> getPointBreakDown(Integer grade) {
-        return null;
+        return findPointHistoryByGradePort.findPointHistoryByGrade(grade);
     }
 }
