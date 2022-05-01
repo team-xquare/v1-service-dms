@@ -1,4 +1,4 @@
-package app.xquare.dms.domain.excel.adaptor.inbound.web;
+package app.xquare.dms.domain.student.adaptor.inbound.web;
 
 import app.xquare.dms.domain.student.application.port.inbound.GetPointBreakDownUseCase;
 import app.xquare.dms.domain.student.application.port.inbound.GetStudentListUseCase;

@@ -1,4 +1,4 @@
-package app.xquare.dms.domain.excel.adaptor.inbound.web;
+package app.xquare.dms.domain.student.adaptor.inbound.web;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -12,12 +12,12 @@ import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/excel")
-public class ExcelController {
+@RequestMapping("/excel/point")
+public class StudentExcelController {
 
     private final StudentPointExcel studentPointExcel;
 
-    @GetMapping("/point")
+    @GetMapping
     public void point(HttpServletResponse response) throws IOException {
 
         Workbook workbook = studentPointExcel.createWorkHook();
