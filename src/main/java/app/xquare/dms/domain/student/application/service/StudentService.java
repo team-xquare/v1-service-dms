@@ -13,16 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase, CompleteTrainingUseCase {
+public class StudentService implements GetStudentListUseCase, GetPointHistoryListUseCase, GivePointUseCase, DeletePointHistoryUseCase, CompleteTrainingUseCase, GetPointBreakDownUseCase {
 
     private final FindStudentPort findStudentPort;
-    private final FindPointHistoryPort findPointHistoryPort;
+    private final FindPointHistoryByStudentPort findPointHistoryByStudentPort;
     private final FindPointByIdPort findPointByIdPort;
     private final FindStudentByIdPort findStudentByIdPort;
     private final FindCompleteTrainingPointPort findCompleteTrainingPointPort;
+    private final FindPointHistoryByGradePort findPointHistoryByGradePort;
 
     private final SavePointHistoryPort savePointHistoryPort;
     private final SaveStudentPort saveStudentPort;
@@ -40,10 +42,17 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
 
     @Override
     public PointHistoryListResponse getPointHistoryList(String studentId) {
-        List<PointHistory> pointHistories = findPointHistoryPort.findPointHistory(studentId);
+        List<PointHistory> pointHistories = findPointHistoryByStudentPort.findPointHistoryByStudent(studentId);
 
         return PointHistoryListResponse.builder()
-                .pointHistories(pointHistories)
+                .pointHistories(pointHistories.stream().map(p -> PointHistoryListResponse.PointHistory.builder()
+                        .id(p.getId())
+                        .date(p.getDate())
+                        .reason(p.getReason())
+                        .pointType(p.getPointType())
+                        .point(p.getPoint())
+                        .build())
+                        .collect(Collectors.toList()))
                 .build();
     }
 
@@ -87,5 +96,10 @@ public class StudentService implements GetStudentListUseCase, GetPointHistoryLis
         savePointHistoryPort.savePointHistory(student, points);
 
         saveStudentPort.saveStudent(student);
+    }
+
+    @Override
+    public List<PointHistory> getPointBreakDown(Integer grade) {
+        return findPointHistoryByGradePort.findPointHistoryByGrade(grade);
     }
 }

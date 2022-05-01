@@ -11,6 +11,10 @@ public class PointHistory {
 
     private final String id;
 
+    private final String name;
+
+    private final String num;
+
     private final LocalDate date;
 
     private final String reason;

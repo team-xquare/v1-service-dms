@@ -15,4 +15,7 @@ public interface PointHistoryRepository extends JpaRepository<PointHistoryJpaEnt
 
     @Query("select p from PointHistoryJpaEntity p join fetch p.point where p.student = :student order by p.pointDate desc")
     List<PointHistoryJpaEntity> findByStudent(@Param("student") StudentJpaEntity student);
+
+    @Query("select p from PointHistoryJpaEntity p join fetch p.point join fetch p.student where p.student.number like :number order by p.student.number asc, p.pointDate desc")
+    List<PointHistoryJpaEntity> findByStudentGrade(@Param("number") String number);
 }
