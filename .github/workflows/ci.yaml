@@ -52,7 +52,7 @@ jobs:
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.EXAMPLE_GITOPS_DEPLOY_TRIGGER }}
+        token: ${{ secrets.GITOPS_DEPLOY_TOKEN }}
         repository: team-xquare/xquare-manifest-repository
         event-type: update_image
         client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "service_name": "${{env.SERVICE_NAME}}", "service_type": "${{env.SERViCE_TYPE}}" }'
