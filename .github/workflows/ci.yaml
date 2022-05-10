@@ -48,10 +48,10 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{secrets.DOCKER_USER}}/${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}:${{ github.sha }}
-      env :
-        JDBC_URL: ${{secrets.JDBC_URL}}
-        DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-        DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+        build-args : |
+          JDBC_URL=${{secrets.JDBC_URL}}
+          DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD}}
+          DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}}
 
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
