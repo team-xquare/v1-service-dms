@@ -1,4 +1,4 @@
-name: Build and Update
+name: Build for Stage
 on:
   push:
     branches:
@@ -7,6 +7,7 @@ on:
 env:
   SERVICE_NAME: dms
   SERVICE_TYPE: backend
+  ENVIRONMENT: stage
 
 jobs:
   build:
@@ -49,14 +50,18 @@ jobs:
         push: true
         tags: ${{secrets.DOCKER_USER}}/${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}:${{ github.sha }}
         build-args : |
-          JDBC_URL=${{secrets.JDBC_URL}}
-          DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD}}
-          DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}}
+          JDBC_URL=${{secrets.JDBC_URL_STAGE}}
+          DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD_STAGE}}
+          DATABASE_USERNAME=${{secrets.DATABASE_USERNAME_STAGE}}
 
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.GITOPS_DEPLOY_TOKEN }}
-        repository: team-xquare/xquare-manifest-repository
+        token: ${{ secrets.J }}
+        repository: team-xquare/xquare-gitops-repo-staging
         event-type: update_image
-        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "service_name": "${{env.SERVICE_NAME}}", "service_type": "${{env.SERVICE_TYPE}}" }'
+        client-payload: '{"ref": "${{ github.ref }}", \
+                          "sha": "${{ github.sha }}", \
+                          "service_name": "${{env.SERVICE_NAME}}", \
+                          "service_type": "${{env.SERVICE_TYPE}}", \
+                          "environment": "${{env.ENVIRONMENT}}" }'
