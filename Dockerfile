@@ -9,6 +9,6 @@ RUN --mount=type=secret,id=JDBC_URL \
     --mount=type=secret,id=DATABASE_PASSWORD \ 
     export JDBC_URL=$(cat /run/secrets/JDBC_URL) && \
     export DATABASE_USERNAME=$(cat /run/secrets/DATABASE_USERNAME) && \
-    export DATABASE_PASSWORD=$(cat /run/secrets/DATABASE_PASSWORD) && \
+    export DATABASE_PASSWORD=$(cat /run/secrets/DATABASE_PASSWORD)
 
-    ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
