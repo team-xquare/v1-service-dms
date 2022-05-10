@@ -5,10 +5,10 @@ EXPOSE 8080
 COPY ./build/libs/*.jar app.jar
 
 RUN --mount=type=secret,id=JDBC_URL \ 
-    export MYSQL_HOST=$(cat /run/secrets/JDBC_URL) && \
     --mount=type=secret,id=DATABASE_USERNAME \
-    export DATABASE_USERNAME=$(cat /run/secrets/DATABASE_USERNAME) && \
     --mount=type=secret,id=DATABASE_PASSWORD \ 
+    export JDBC_URL=$(cat /run/secrets/JDBC_URL) && \
+    export DATABASE_USERNAME=$(cat /run/secrets/DATABASE_USERNAME) && \
     export DATABASE_PASSWORD=$(cat /run/secrets/DATABASE_PASSWORD) && \
 
     ENTRYPOINT ["java","-jar","/app.jar"]
