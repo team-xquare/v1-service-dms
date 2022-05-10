@@ -11,6 +11,4 @@ RUN --mount=type=secret,id=JDBC_URL \
     --mount=type=secret,id=DATABASE_PASSWORD \ 
     export DATABASE_PASSWORD=$(cat /run/secrets/DATABASE_PASSWORD) && \
 
-    python genenv.py
-
-ENTRYPOINT ["java","-jar","/app.jar"]
+    ENTRYPOINT ["java","-jar","/app.jar"]
