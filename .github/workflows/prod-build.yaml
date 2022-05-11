@@ -2,8 +2,8 @@ name: Build for Production
 on:
   push:
     tags:
-      - 1.*.*
-      - 2.*.*
+      - v1.*.*
+      - v2.*.*
 
 env:
   SERVICE_NAME: dms
