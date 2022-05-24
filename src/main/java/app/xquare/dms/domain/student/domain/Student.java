@@ -28,8 +28,8 @@ public class Student {
     }
 
     public void completeTraining() {
-        isPenaltyRequired = false;
         setGoodPoint(-5);
+        isPenaltyRequired = false;
         setBadPoint(-5);
     }
 
