@@ -21,4 +21,10 @@ public class StudentJpaEntity {
 
     @OneToOne(mappedBy = "student", optional = false, fetch = FetchType.LAZY)
     private PointStatusJpaEntity pointStatus;
+
+    @OneToOne(mappedBy = "student", optional = false, fetch = FetchType.LAZY)
+    private StayApplyJpaEntity stayApply;
+
+    @OneToOne(mappedBy = "student", optional = false, fetch = FetchType.LAZY)
+    private MealApplyJpaEntity mealApply;
 }

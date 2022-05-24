@@ -22,6 +22,10 @@ public class Student {
 
     private Boolean isPenaltyRequired;
 
+    private String stayApply;
+
+    private String mealApply;
+
     public void addPoint(Point point) {
         if(point.isGoodPoint()) setGoodPoint(point.getPoint());
         else setBadPoint(point.getPoint());

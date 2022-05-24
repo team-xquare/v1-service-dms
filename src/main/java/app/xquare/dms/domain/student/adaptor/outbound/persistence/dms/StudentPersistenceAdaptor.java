@@ -36,7 +36,7 @@ public class StudentPersistenceAdaptor implements FindStudentPort, FindPointHist
 
     @Override
     public List<Student> findStudent() {
-        return pointStatusRepository.findAllOrderByStudentNumber().stream()
+        return studentRepository.findAllOrderByStudentNumber().stream()
                 .map(studentMapper::mapToStudent)
                 .collect(Collectors.toList());
     }
