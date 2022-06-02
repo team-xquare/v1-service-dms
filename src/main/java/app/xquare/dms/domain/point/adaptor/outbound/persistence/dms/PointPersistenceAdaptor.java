@@ -4,11 +4,11 @@ import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity.Point
 import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.mapper.PointMapper;
 import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.repository.PointRepository;
 import app.xquare.dms.domain.point.application.port.outbound.SavePointPort;
-import app.xquare.dms.domain.student.application.port.outbound.FindCompleteTrainingPointPort;
-import app.xquare.dms.domain.student.application.port.outbound.FindPointByIdPort;
+import app.xquare.dms.domain.point.application.port.outbound.FindCompleteTrainingPointPort;
+import app.xquare.dms.domain.point.application.port.outbound.FindPointByIdPort;
 import app.xquare.dms.domain.point.application.port.outbound.FindPointPort;
 import app.xquare.dms.domain.point.domain.Point;
-import app.xquare.dms.domain.student.exception.PointNotFoundException;
+import app.xquare.dms.domain.point.exception.PointNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

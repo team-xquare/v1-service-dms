@@ -1,5 +1,7 @@
 package app.xquare.dms.domain.student.application.service;
 
+import app.xquare.dms.domain.point.application.port.outbound.FindCompleteTrainingPointPort;
+import app.xquare.dms.domain.point.application.port.outbound.FindPointByIdPort;
 import app.xquare.dms.domain.student.application.port.inbound.*;
 import app.xquare.dms.domain.student.application.port.inbound.dto.response.PointHistoryListResponse;
 import app.xquare.dms.domain.student.application.port.inbound.dto.request.PointRequest;
