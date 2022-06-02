@@ -1,12 +1,15 @@
 package app.xquare.dms.domain.point.application.service;
 
 import app.xquare.dms.domain.point.application.port.inbound.CreatePointRuleUseCase;
+import app.xquare.dms.domain.point.application.port.inbound.DeletePointRuleUseCase;
 import app.xquare.dms.domain.point.application.port.inbound.GetPointListUseCase;
 import app.xquare.dms.domain.point.application.port.inbound.dto.request.PointRuleRequest;
 import app.xquare.dms.domain.point.application.port.inbound.dto.response.PointListResponse;
+import app.xquare.dms.domain.point.application.port.outbound.DeletePointPort;
 import app.xquare.dms.domain.point.application.port.outbound.FindPointPort;
 import app.xquare.dms.domain.point.application.port.outbound.SavePointPort;
 import app.xquare.dms.domain.point.domain.Point;
+import app.xquare.dms.domain.point.application.port.outbound.FindPointByIdPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +18,11 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class PointService implements GetPointListUseCase, CreatePointRuleUseCase {
+public class PointService implements GetPointListUseCase, CreatePointRuleUseCase, DeletePointRuleUseCase {
 
     private final FindPointPort findPointPort;
+    private final FindPointByIdPort findPointByIdPort;
+    private final DeletePointPort deletePointPort;
     private final SavePointPort savePointPort;
 
     @Override
@@ -39,5 +44,11 @@ public class PointService implements GetPointListUseCase, CreatePointRuleUseCase
                 .build();
 
         savePointPort.savePoint(point);
+    }
+
+    @Transactional
+    @Override
+    public void deletePointRule(String pointId) {
+        deletePointPort.deletePoint(pointId);
     }
 }
