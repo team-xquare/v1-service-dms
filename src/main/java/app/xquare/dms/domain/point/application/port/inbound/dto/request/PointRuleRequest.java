@@ -6,7 +6,7 @@ import javax.validation.constraints.*;
 
 @Builder
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PointRuleRequest {
 
