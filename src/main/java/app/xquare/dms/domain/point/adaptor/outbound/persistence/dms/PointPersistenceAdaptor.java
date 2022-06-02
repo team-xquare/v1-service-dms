@@ -3,12 +3,9 @@ package app.xquare.dms.domain.point.adaptor.outbound.persistence.dms;
 import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
 import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.mapper.PointMapper;
 import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.repository.PointRepository;
-import app.xquare.dms.domain.point.application.port.outbound.SavePointPort;
-import app.xquare.dms.domain.student.application.port.outbound.FindCompleteTrainingPointPort;
-import app.xquare.dms.domain.student.application.port.outbound.FindPointByIdPort;
-import app.xquare.dms.domain.point.application.port.outbound.FindPointPort;
+import app.xquare.dms.domain.point.application.port.outbound.*;
 import app.xquare.dms.domain.point.domain.Point;
-import app.xquare.dms.domain.student.exception.PointNotFoundException;
+import app.xquare.dms.domain.point.exception.PointNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort, FindCompleteTrainingPointPort, SavePointPort {
+public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort, FindCompleteTrainingPointPort, SavePointPort, DeletePointPort {
 
     private final PointMapper pointMapper;
 
@@ -69,5 +66,13 @@ public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort
     @Override
     public void savePoint(Point point) {
         pointRepository.save(pointMapper.mapToPointJpaEntity(point));
+    }
+
+    @Override
+    public void deletePoint(String pointId) {
+        PointJpaEntity point = pointRepository.findById(pointId)
+                .orElseThrow(() -> PointNotFoundException.EXCEPTION);
+
+        pointRepository.delete(point);
     }
 }

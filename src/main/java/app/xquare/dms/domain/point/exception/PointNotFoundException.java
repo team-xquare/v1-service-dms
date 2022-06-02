@@ -1,4 +1,4 @@
-package app.xquare.dms.domain.student.exception;
+package app.xquare.dms.domain.point.exception;
 
 import app.xquare.dms.global.exception.ExceptionCode;
 import app.xquare.dms.global.exception.GlobalException;
