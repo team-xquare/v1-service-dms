@@ -10,7 +10,7 @@ import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.PointStatusRepository;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.StudentRepository;
 import app.xquare.dms.domain.student.application.port.outbound.*;
-import app.xquare.dms.domain.student.domain.Point;
+import app.xquare.dms.domain.point.domain.Point;
 import app.xquare.dms.domain.student.domain.PointHistory;
 import app.xquare.dms.domain.student.domain.Student;
 import app.xquare.dms.domain.student.exception.PointHistoryNotFoundException;

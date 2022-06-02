@@ -1,4 +1,4 @@
-package app.xquare.dms.domain.student.domain;
+package app.xquare.dms.domain.point.domain;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,5 +1,6 @@
 package app.xquare.dms.domain.student.domain;
 
+import app.xquare.dms.domain.point.domain.Point;
 import app.xquare.dms.domain.student.exception.InvalidPointException;
 import lombok.Builder;
 import lombok.Getter;

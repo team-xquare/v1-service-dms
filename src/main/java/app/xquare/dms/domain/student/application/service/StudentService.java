@@ -5,7 +5,7 @@ import app.xquare.dms.domain.student.application.port.inbound.dto.response.Point
 import app.xquare.dms.domain.student.application.port.inbound.dto.request.PointRequest;
 import app.xquare.dms.domain.student.application.port.inbound.dto.response.StudentListResponse;
 import app.xquare.dms.domain.student.application.port.outbound.*;
-import app.xquare.dms.domain.student.domain.Point;
+import app.xquare.dms.domain.point.domain.Point;
 import app.xquare.dms.domain.student.domain.PointHistory;
 import app.xquare.dms.domain.student.domain.Student;
 import lombok.RequiredArgsConstructor;

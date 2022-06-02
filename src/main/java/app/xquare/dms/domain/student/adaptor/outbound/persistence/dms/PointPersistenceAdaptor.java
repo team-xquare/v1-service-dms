@@ -5,15 +5,14 @@ import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper.Poi
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.PointRepository;
 import app.xquare.dms.domain.student.application.port.outbound.FindCompleteTrainingPointPort;
 import app.xquare.dms.domain.student.application.port.outbound.FindPointByIdPort;
-import app.xquare.dms.domain.student.application.port.outbound.FindPointPort;
-import app.xquare.dms.domain.student.domain.Point;
+import app.xquare.dms.domain.point.application.port.outbound.FindPointPort;
+import app.xquare.dms.domain.point.domain.Point;
 import app.xquare.dms.domain.student.exception.PointNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor

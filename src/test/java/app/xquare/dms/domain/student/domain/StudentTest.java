@@ -1,5 +1,6 @@
 package app.xquare.dms.domain.student.domain;
 
+import app.xquare.dms.domain.point.domain.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

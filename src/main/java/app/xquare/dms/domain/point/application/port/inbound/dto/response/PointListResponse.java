@@ -1,6 +1,6 @@
-package app.xquare.dms.domain.student.application.port.inbound.dto.response;
+package app.xquare.dms.domain.point.application.port.inbound.dto.response;
 
-import app.xquare.dms.domain.student.domain.Point;
+import app.xquare.dms.domain.point.domain.Point;
 import lombok.Builder;
 import lombok.Getter;
 

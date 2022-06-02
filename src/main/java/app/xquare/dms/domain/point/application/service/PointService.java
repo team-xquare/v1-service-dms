@@ -1,9 +1,9 @@
-package app.xquare.dms.domain.student.application.service;
+package app.xquare.dms.domain.point.application.service;
 
-import app.xquare.dms.domain.student.application.port.inbound.GetPointListUseCase;
-import app.xquare.dms.domain.student.application.port.inbound.dto.response.PointListResponse;
-import app.xquare.dms.domain.student.application.port.outbound.FindPointPort;
-import app.xquare.dms.domain.student.domain.Point;
+import app.xquare.dms.domain.point.application.port.inbound.GetPointListUseCase;
+import app.xquare.dms.domain.point.application.port.inbound.dto.response.PointListResponse;
+import app.xquare.dms.domain.point.application.port.outbound.FindPointPort;
+import app.xquare.dms.domain.point.domain.Point;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
