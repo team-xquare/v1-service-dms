@@ -3,6 +3,7 @@ package app.xquare.dms.domain.point.adaptor.outbound.persistence.dms;
 import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
 import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.mapper.PointMapper;
 import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.repository.PointRepository;
+import app.xquare.dms.domain.point.application.port.outbound.SavePointPort;
 import app.xquare.dms.domain.student.application.port.outbound.FindCompleteTrainingPointPort;
 import app.xquare.dms.domain.student.application.port.outbound.FindPointByIdPort;
 import app.xquare.dms.domain.point.application.port.outbound.FindPointPort;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort, FindCompleteTrainingPointPort {
+public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort, FindCompleteTrainingPointPort, SavePointPort {
 
     private final PointMapper pointMapper;
 
@@ -63,5 +64,10 @@ public class PointPersistenceAdaptor implements FindPointPort, FindPointByIdPort
             default:
                 return Collections.emptyList();
         }
+    }
+
+    @Override
+    public void savePoint(Point point) {
+        pointRepository.save(pointMapper.mapToPointJpaEntity(point));
     }
 }
