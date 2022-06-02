@@ -2,9 +2,7 @@ package app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Builder
@@ -15,6 +13,7 @@ import javax.persistence.Table;
 public class PointJpaEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String reason;
