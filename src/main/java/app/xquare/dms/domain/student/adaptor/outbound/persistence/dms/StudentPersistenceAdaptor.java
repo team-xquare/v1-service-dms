@@ -1,12 +1,12 @@
 package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms;
 
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.PointHistoryJpaEntity;
-import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.StudentJpaEntity;
-import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper.PointMapper;
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.mapper.PointMapper;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper.StudentMapper;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.PointHistoryRepository;
-import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.PointRepository;
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.repository.PointRepository;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.PointStatusRepository;
 import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.StudentRepository;
 import app.xquare.dms.domain.student.application.port.outbound.*;

@@ -1,5 +1,6 @@
 package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity;
 
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
 import lombok.*;
 
 import javax.persistence.*;

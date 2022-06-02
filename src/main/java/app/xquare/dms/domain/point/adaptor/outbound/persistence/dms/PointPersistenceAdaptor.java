@@ -1,8 +1,8 @@
-package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms;
+package app.xquare.dms.domain.point.adaptor.outbound.persistence.dms;
 
-import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
-import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper.PointMapper;
-import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository.PointRepository;
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.mapper.PointMapper;
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.repository.PointRepository;
 import app.xquare.dms.domain.student.application.port.outbound.FindCompleteTrainingPointPort;
 import app.xquare.dms.domain.student.application.port.outbound.FindPointByIdPort;
 import app.xquare.dms.domain.point.application.port.outbound.FindPointPort;

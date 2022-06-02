@@ -1,6 +1,6 @@
-package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.mapper;
+package app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.mapper;
 
-import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
 import app.xquare.dms.domain.point.domain.Point;
 import org.springframework.stereotype.Component;
 

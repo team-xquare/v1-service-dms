@@ -1,6 +1,6 @@
-package app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.repository;
+package app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.repository;
 
-import app.xquare.dms.domain.student.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
+import app.xquare.dms.domain.point.adaptor.outbound.persistence.dms.entity.PointJpaEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
