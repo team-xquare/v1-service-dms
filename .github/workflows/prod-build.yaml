@@ -2,14 +2,11 @@ name: Build for Production
 on:
   push:
     tags:
-      - v0.*.*
-      - v1.*.*
-      - v2.*.*
+      - v*.*.*
 
 env:
   SERVICE_NAME: dms
-  SERVICE_TYPE: backend
-  ENVIRONMENT: production
+  SERVICE_TYPE: be
 
 jobs:
   build:
@@ -67,5 +64,4 @@ jobs:
         client-payload: '{"ref": "${{ github.ref }}", 
                           "version":  "${{ steps.get_version.outputs.VERSION }}",
                           "service_name": "${{env.SERVICE_NAME}}",
-                          "service_type": "${{env.SERVICE_TYPE}}",
-                          "environment": "${{env.ENVIRONMENT}}" }'
+                          "service_type": "${{env.SERVICE_TYPE}}"}'
