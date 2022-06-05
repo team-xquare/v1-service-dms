@@ -2,7 +2,9 @@ package app.xquare.dms.domain.notice.adaptor.inbound.web;
 
 import app.xquare.dms.domain.notice.application.port.inbound.CreateNoticeUseCase;
 import app.xquare.dms.domain.notice.application.port.inbound.GetNoticeListUseCase;
+import app.xquare.dms.domain.notice.application.port.inbound.UpdateNoticeUseCase;
 import app.xquare.dms.domain.notice.application.port.inbound.dto.request.CreateNoticeRequest;
+import app.xquare.dms.domain.notice.application.port.inbound.dto.request.UpdateNoticeRequest;
 import app.xquare.dms.domain.notice.application.port.inbound.dto.response.NoticeListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ public class NoticeController {
 
     private final GetNoticeListUseCase getNoticeListUseCase;
     private final CreateNoticeUseCase createNoticeUseCase;
+    private final UpdateNoticeUseCase updateNoticeUseCase;
 
     @GetMapping
     public NoticeListResponse noticeList() {
@@ -27,5 +30,10 @@ public class NoticeController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public void notice(@Valid @RequestBody CreateNoticeRequest request) {
         createNoticeUseCase.createNotice(request);
+    }
+
+    @PutMapping("/{notice-id}")
+    public void notice(@Valid @RequestBody UpdateNoticeRequest request, @PathVariable("notice-id") String noticeId) {
+        updateNoticeUseCase.updateNotice(request, noticeId);
     }
 }

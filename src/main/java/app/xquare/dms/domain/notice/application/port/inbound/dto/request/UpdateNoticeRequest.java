@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CreateNoticeRequest {
+public class UpdateNoticeRequest {
 
     @NotBlank(message = "제목을 입력해주세요")
     @Size(max = 255)
