@@ -3,9 +3,7 @@ package app.xquare.dms.domain.notice.adaptor.outbound.persistence.dms;
 import app.xquare.dms.domain.notice.adaptor.outbound.persistence.dms.entity.NoticeJpaEntity;
 import app.xquare.dms.domain.notice.adaptor.outbound.persistence.dms.mapper.NoticeMapper;
 import app.xquare.dms.domain.notice.adaptor.outbound.persistence.dms.repository.NoticeRepository;
-import app.xquare.dms.domain.notice.application.port.outbound.FindNoticeByIdPort;
-import app.xquare.dms.domain.notice.application.port.outbound.FindNoticePort;
-import app.xquare.dms.domain.notice.application.port.outbound.SaveNoticePort;
+import app.xquare.dms.domain.notice.application.port.outbound.*;
 import app.xquare.dms.domain.notice.domain.Notice;
 import app.xquare.dms.domain.notice.exception.NoticeNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class NoticePersistenceAdaptor implements FindNoticePort, SaveNoticePort, FindNoticeByIdPort {
+public class NoticePersistenceAdaptor implements FindNoticePort, SaveNoticePort, FindNoticeByIdPort, DeleteNoticeByIdPort, ExistsByIdPort {
 
     private final NoticeRepository noticeRepository;
 
@@ -42,5 +40,15 @@ public class NoticePersistenceAdaptor implements FindNoticePort, SaveNoticePort,
                 .orElseThrow(() -> NoticeNotFoundException.EXCEPTION);
 
         return noticeMapper.mapToNotice(notice);
+    }
+
+    @Override
+    public void deleteNoticeById(String id) {
+        noticeRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsById(String id) {
+        return noticeRepository.existsById(id);
     }
 }
