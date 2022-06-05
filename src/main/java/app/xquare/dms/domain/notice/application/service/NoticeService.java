@@ -7,11 +7,9 @@ import app.xquare.dms.domain.notice.application.port.inbound.UpdateNoticeUseCase
 import app.xquare.dms.domain.notice.application.port.inbound.dto.request.CreateNoticeRequest;
 import app.xquare.dms.domain.notice.application.port.inbound.dto.request.UpdateNoticeRequest;
 import app.xquare.dms.domain.notice.application.port.inbound.dto.response.NoticeListResponse;
-import app.xquare.dms.domain.notice.application.port.outbound.DeleteNoticeByIdPort;
-import app.xquare.dms.domain.notice.application.port.outbound.FindNoticeByIdPort;
-import app.xquare.dms.domain.notice.application.port.outbound.FindNoticePort;
-import app.xquare.dms.domain.notice.application.port.outbound.SaveNoticePort;
+import app.xquare.dms.domain.notice.application.port.outbound.*;
 import app.xquare.dms.domain.notice.domain.Notice;
+import app.xquare.dms.domain.notice.exception.NoticeNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +25,7 @@ public class NoticeService implements GetNoticeListUseCase, CreateNoticeUseCase,
     private final SaveNoticePort saveNoticePort;
     private final FindNoticeByIdPort findNoticeByIdPort;
     private final DeleteNoticeByIdPort deleteNoticeByIdPort;
+    private final ExistsByIdPort existsByIdPort;
 
     @Override
     public NoticeListResponse getNoticeList() {
@@ -61,7 +60,10 @@ public class NoticeService implements GetNoticeListUseCase, CreateNoticeUseCase,
 
     @Override
     public void deleteNotice(String id) {
-        findNoticeByIdPort.findNoticeById(id);
+        if(!existsByIdPort.existsById(id)) {
+            throw NoticeNotFoundException.EXCEPTION;
+        }
+
         deleteNoticeByIdPort.deleteNoticeById(id);
     }
 }
