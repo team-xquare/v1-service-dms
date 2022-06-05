@@ -12,7 +12,9 @@ public enum ExceptionCode {
     POINT_NOR_FOUND(404, "Point Not Found"),
     POINT_HISTORY_NOT_FOUND(404, "Point History Not Found"),
     INVALID_POINT(400, "Invalid Point"),
-    STUDENT_NOT_FOUND(404, "Student Not Found");
+    STUDENT_NOT_FOUND(404, "Student Not Found"),
+
+    NOTICE_NOT_FOUND(404, "Notice Not Found");
 
     private final int status;
     private final String message;
