@@ -15,4 +15,13 @@ public class NoticeMapper {
                 .createdAt(notice.getCreatedAt())
                 .build();
     }
+
+    public NoticeJpaEntity mapToNoticeJpaEntity(Notice notice) {
+        return NoticeJpaEntity.builder()
+                .id(notice.getId())
+                .title(notice.getTitle())
+                .content(notice.getContent())
+                .createdAt(notice.getCreatedAt())
+                .build();
+    }
 }
