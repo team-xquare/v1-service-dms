@@ -3,6 +3,7 @@ package app.xquare.dms.domain.point.application.service;
 import app.xquare.dms.domain.point.application.port.inbound.CreatePointRuleUseCase;
 import app.xquare.dms.domain.point.application.port.inbound.DeletePointRuleUseCase;
 import app.xquare.dms.domain.point.application.port.inbound.GetPointListUseCase;
+import app.xquare.dms.domain.point.application.port.inbound.UpdatePointRuleUseCase;
 import app.xquare.dms.domain.point.application.port.inbound.dto.request.PointRuleRequest;
 import app.xquare.dms.domain.point.application.port.inbound.dto.response.PointListResponse;
 import app.xquare.dms.domain.point.application.port.outbound.DeletePointPort;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class PointService implements GetPointListUseCase, CreatePointRuleUseCase, DeletePointRuleUseCase {
+public class PointService implements GetPointListUseCase, CreatePointRuleUseCase, DeletePointRuleUseCase, UpdatePointRuleUseCase {
 
     private final FindPointPort findPointPort;
     private final FindPointByIdPort findPointByIdPort;
@@ -50,5 +51,17 @@ public class PointService implements GetPointListUseCase, CreatePointRuleUseCase
     @Override
     public void deletePointRule(String pointId) {
         deletePointPort.deletePoint(pointId);
+    }
+
+    @Transactional
+    @Override
+    public void updatePointRule(PointRuleRequest request, String pointId) {
+        Point point = findPointByIdPort.findPointById(pointId);
+
+        point.setPoint(request.getPoint());
+        point.setReason(request.getReason());
+        point.setType(request.getType());
+
+        savePointPort.savePoint(point);
     }
 }
