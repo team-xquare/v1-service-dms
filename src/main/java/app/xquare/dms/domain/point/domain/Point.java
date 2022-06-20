@@ -2,6 +2,7 @@ package app.xquare.dms.domain.point.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Builder
 @Getter
@@ -9,10 +10,13 @@ public class Point {
 
     private final String id;
 
-    private final String reason;
+    @Setter
+    private String reason;
 
-    private final Boolean type;
+    @Setter
+    private Boolean type;
 
+    @Setter
     private Integer point;
 
     public boolean isGoodPoint() {
