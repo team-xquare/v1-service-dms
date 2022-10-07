@@ -16,3 +16,8 @@ server:
   servlet:
     context-path: /dms
   shutdown: graceful
+auth:
+  id: ${XQUARE_ADMIN_ID}
+  pw: ${XQUARE_ADMIN_PW}
+  jwt:
+    secret: ${JWT_SECRET}
