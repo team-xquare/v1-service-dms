@@ -1,23 +1,40 @@
 spring:
+  application:
+    name: v1-dms-service
+  profiles:
+    active: ${PROFILE}
+  config:
+    import: optional:configserver:https://api.xquare.app/cloud-config/
+  cloud:
+    config:
+      username: ${CLOUD_CONFIG_USERNAME}
+      password: ${CLOUD_CONFIG_PASSWORD}
+
   jpa:
-    show-sql: false
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
+
   datasource:
-    url: ${JDBC_URL}
+    url: ${db.url}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ${DATABASE_PASSWORD}
-    username: ${DATABASE_USERNAME}
+    password: ${db.password}
+    username: ${db.username}
+
   jackson:
     property-naming-strategy: SNAKE_CASE
+
   lifecycle:
     timeout-per-shutdown-phase: 20s
+
 server:
   servlet:
     context-path: /dms
   shutdown: graceful
+
 auth:
-  id: ${XQUARE_ADMIN_ID}
-  pw: ${XQUARE_ADMIN_PW}
+  id: ${xquare.admin.id}
+  pw: ${xquare.admin.pw}
   jwt:
-    secret: ${JWT_SECRET}
+    secret: ${xquare.jwt}
