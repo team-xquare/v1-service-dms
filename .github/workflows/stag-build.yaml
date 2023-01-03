@@ -64,4 +64,4 @@ jobs:
         client-payload: '{"ref": "${{ github.ref }}", 
                           "version": "${{ github.sha }}",
                           "service_name": "${{env.SERVICE_NAME}}",
-                          "service_type": "${{env.SERVICE_TYPE}}"}'
+                          "service_type": "${{env.SERVICE_TYPE}}" }'
