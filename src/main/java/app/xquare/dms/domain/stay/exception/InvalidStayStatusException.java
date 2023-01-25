@@ -1,13 +1,13 @@
 package app.xquare.dms.domain.stay.exception;
 
-import app.xquare.dms.global.exception.ExceptionCode;
-import app.xquare.dms.global.exception.GlobalException;
+import app.xquare.dms.global.error.GlobalErrorCode;
+import app.xquare.dms.global.error.exception.GlobalException;
 
 public class InvalidStayStatusException extends GlobalException {
 
     public static final GlobalException EXCEPTION = new InvalidStayStatusException();
 
     public InvalidStayStatusException() {
-        super(ExceptionCode.INVALID_STAY_STATUS);
+        super(GlobalErrorCode.INVALID_STAY_STATUS);
     }
 }
