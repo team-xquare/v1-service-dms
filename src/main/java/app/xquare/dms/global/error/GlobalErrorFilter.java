@@ -33,13 +33,13 @@ public class GlobalErrorFilter extends OncePerRequestFilter {
         }
     }
 
-    private void setErrorResponse(ExceptionProperty errorProperty, HttpServletResponse response) throws IOException {
-        response.setStatus(errorProperty.getStatus());
+    private void setErrorResponse(ExceptionProperty exceptionProperty, HttpServletResponse response) throws IOException {
+        response.setStatus(exceptionProperty.getStatus());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         response.getWriter().write(
                 objectMapper.writeValueAsString(
-                        new ErrorResponse(errorProperty)
+                        new ErrorResponse(exceptionProperty)
                 )
         );
     }
