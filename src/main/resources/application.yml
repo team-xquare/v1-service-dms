@@ -1,3 +1,8 @@
+server:
+  shutdown: graceful
+  servlet:
+    context-path: /dms
+
 spring:
   application:
     name: v1-dms-service
@@ -10,28 +15,24 @@ spring:
       username: ${CLOUD_CONFIG_USERNAME}
       password: ${CLOUD_CONFIG_PASSWORD}
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${db.url}
+    username: ${db.username}
+    password: ${db.password}
+
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: none
-
-  datasource:
-    url: ${db.url}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ${db.password}
-    username: ${db.username}
+      ddl-auto: validate
+    open-in-view: false
 
   jackson:
     property-naming-strategy: SNAKE_CASE
 
   lifecycle:
     timeout-per-shutdown-phase: 20s
-
-server:
-  servlet:
-    context-path: /dms
-  shutdown: graceful
 
 auth:
   id: ${xquare.admin.id}
