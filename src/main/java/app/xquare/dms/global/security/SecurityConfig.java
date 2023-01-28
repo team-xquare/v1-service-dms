@@ -28,13 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
 
-                .antMatchers(HttpMethod.GET, "/dms/notices").hasRole(DORMITORY)
-                .antMatchers(HttpMethod.POST, "/dms/notices/{notice-id}").hasRole(DORMITORY)
-                .antMatchers(HttpMethod.PUT, "/dms/notices/{notice-id}").hasRole(DORMITORY)
-                .antMatchers(HttpMethod.DELETE, "/dms/notices/{notice-id}").hasRole(DORMITORY)
+                .antMatchers(HttpMethod.GET, "/dms/notices").hasAnyRole(DORMITORY)
+                .antMatchers(HttpMethod.POST, "/dms/notices/{notice-id}").hasAnyRole(DORMITORY)
+                .antMatchers(HttpMethod.PUT, "/dms/notices/{notice-id}").hasAnyRole(DORMITORY)
+                .antMatchers(HttpMethod.DELETE, "/dms/notices/{notice-id}").hasAnyRole(DORMITORY)
 
-                .antMatchers(HttpMethod.GET, "/dms/stay").hasRole(DORMITORY)
-                .antMatchers(HttpMethod.GET, "/dms/excel/stay").hasRole(DORMITORY)
+                .antMatchers(HttpMethod.GET, "/dms/stay").hasAnyRole(DORMITORY)
+                .antMatchers(HttpMethod.GET, "/dms/excel/stay").hasAnyRole(DORMITORY)
 
                 .anyRequest().authenticated();
         http
