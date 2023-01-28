@@ -1,5 +1,6 @@
 package app.xquare.dms.global.security;
 
+import app.xquare.dms.domain.user.role.UserRole;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final ObjectMapper objectMapper;
 
+    private static final String DORMITORY = "ROLE_" + UserRole.DOR.name();
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -24,15 +27,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors();
         http
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/notices").authenticated()
-                .antMatchers(HttpMethod.POST, "/notices/{notice-id}").authenticated()
-                .antMatchers(HttpMethod.PUT, "/notices/{notice-id}").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/notices/{notice-id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/dms/notices").hasRole(DORMITORY)
+                .antMatchers(HttpMethod.POST, "/dms/notices/{notice-id}").hasRole(DORMITORY)
+                .antMatchers(HttpMethod.PUT, "/dms/notices/{notice-id}").hasRole(DORMITORY)
+                .antMatchers(HttpMethod.DELETE, "/dms/notices/{notice-id}").hasRole(DORMITORY)
 
-                .antMatchers(HttpMethod.GET, "/stay").authenticated()
-                .antMatchers(HttpMethod.GET, "/excel/stay").authenticated()
+                .antMatchers(HttpMethod.GET, "/dms/stay").hasRole(DORMITORY)
+                .antMatchers(HttpMethod.GET, "/dms/excel/stay").hasRole(DORMITORY)
 
                 .anyRequest().authenticated();
         http
