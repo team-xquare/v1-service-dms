@@ -1,5 +1,7 @@
 package app.xquare.dms.global.security;
 
+import app.xquare.dms.global.error.GlobalErrorFilter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,11 +11,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class FilterConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-    private final TokenProvider tokenProvider;
+    private final ObjectMapper objectMapper;
 
     @Override
     public void configure(HttpSecurity builder) {
-        TokenFilter tokenFilter = new TokenFilter(tokenProvider);
-        builder.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
+        GlobalErrorFilter globalErrorFilter = new GlobalErrorFilter(objectMapper);
+        builder.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        builder.addFilterBefore(globalErrorFilter, AuthenticationFilter.class);
     }
 }
